@@ -1,0 +1,23 @@
+<% provide :title, "Home" %>
+
+
+
+<h1><%= yield :title %></h1>
+
+<h1>Hacker News Clone</h1>
+
+<h2>A user-contributed news discovery site.</h2>
+
+<table class="table">
+  <tr>
+    <td>Url</td>
+  </tr>
+  <% @links.each do |link| %>
+    <tr>
+      <td><%= link_to link.url, "http://" + "#{link.url}"  %></td>
+
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to 'Add link', new_link_path, :class => 'btn btn-primary' %></p>
