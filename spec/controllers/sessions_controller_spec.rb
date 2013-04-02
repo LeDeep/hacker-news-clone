@@ -7,6 +7,7 @@ describe SessionsController do
     it {should route(:post, '/sessions').to :action => :create}
     it {should route(:delete, '/logout').to :action => :destroy}
   end
+
   context "GET 'new'" do
     it "returns http success" do
       get 'new'
@@ -20,8 +21,6 @@ describe SessionsController do
       before {post :create, {:email => user.email, :password => user.password}}
       
       it {should set_session(:user_id).to(user.id)}
-
-
       it {should redirect_to root_url}
       it {should set_the_flash[:notice]}
     end

@@ -16,19 +16,21 @@ describe UsersController do
   end
 
   context 'POST create' do 
-      let(:valid_attributes) {{:email => 'person@email.com', :password => 'supersecret', :password_confirmation => 'supersecret'}}
-      let(:valid_parameters) {{:user => valid_attributes}}
-      let(:invalid_attributes) {{:email => '', :password => '', :password_confirmation => ''}}
-      let(:invalid_parameters) {{:user => invalid_attributes}}
 
     context 'with valid parameters' do
+      let(:valid_attributes) {{:email => 'person@email.com', :password => 'supersecret', :password_confirmation => 'supersecret'}}
+      let(:valid_parameters) {{:user => valid_attributes}}
 
       before {post :create, valid_parameters}
+      
       it {should redirect_to root_url}
       it {should set_the_flash[:notice].to("Thank you for signing up!")}
     end
 
-    context 'with invalid parameters' do 
+    context 'with invalid parameters' do
+      let(:invalid_attributes) {{:email => '', :password => '', :password_confirmation => ''}}
+      let(:invalid_parameters) {{:user => invalid_attributes}}
+
       before {post :create, invalid_parameters}
       
       it {should redirect_to signup_path}
@@ -36,8 +38,10 @@ describe UsersController do
     end
 
     context 'User count' do
-      it 'creates a new user' do 
-        expect {post :create, valid_parameters}.to change(User, :count).by(1)
+      let(:valid_attributes) {{:email => 'person@email.com', :password => 'supersecret', :password_confirmation => 'supersecret'}}
+      let(:valid_parameters) {{:user => valid_attributes}}
+        it 'creates a new user' do 
+          expect {post :create, valid_parameters}.to change(User, :count).by(1)
       end
     end
   end

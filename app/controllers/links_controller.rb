@@ -1,12 +1,10 @@
 class LinksController < ApplicationController
-
-
   def new
     @link = Link.new
   end
 
   def create
-    @link = Link.create(params[:link])
+    @link = Link.new(params[:link])
 
     if @link.save
       flash[:notice] = 'Your link was successfully created.'

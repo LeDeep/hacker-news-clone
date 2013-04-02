@@ -44,7 +44,7 @@ describe LinksController do
     before {get :index}
 
     it {should render_template :index}
-  end  
+  end
 end
 
 
