@@ -10,14 +10,15 @@ describe VotesController do
 
   context 'POST create' do 
     context 'with valid parameters' do
-      let(:valid_link) {Link.create(:url => 'http://google.com', :description => 'lasfjsldkf')}
-      let(:valid_attributes) {{:link_id => valid_link.id, :vote => {:up_down => 1}}}
+      let(:user) {FactoryGirl.create(:user)}
+      let(:link) {FactoryGirl.create(:link)}
+      let(:valid_attributes) {{:link_id => link.id, :vote => {:up_down => 1}}}  
 
       it 'creates a new vote' do 
-        expect {post :create, valid_attributes}.to change(Vote, :count).by(1)
+        expect {post :create, valid_attributes, {:user_id => user.id}}.to change(Vote, :count).by(1)
       end
 
-      before {post :create, valid_attributes}
+      before {post :create, valid_attributes, {:user_id => user.id}}
       it {should redirect_to links_path}
       it {should set_the_flash[:notice]}
     end

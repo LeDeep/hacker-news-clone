@@ -1,5 +1,7 @@
 class VotesController < ApplicationController
 
+  before_filter :authorize, only: [:new, :create]
+
   def new
     @vote = Vote.new
   end

@@ -4,4 +4,9 @@ FactoryGirl.define do
     password_confirmation 'fooAAnnn$$54'
     email "foo@example.com"
   end
+
+  factory :link do
+    url 'http://www.google.com'
+    description 'Search'
+  end
 end

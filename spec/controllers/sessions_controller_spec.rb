@@ -2,6 +2,11 @@ require 'spec_helper'
 
 describe SessionsController do
 
+  context 'routes' do 
+    it {should route(:get, '/login').to :action => :new}
+    it {should route(:post, '/sessions').to :action => :create}
+    it {should route(:delete, '/logout').to :action => :destroy}
+  end
   context "GET 'new'" do
     it "returns http success" do
       get 'new'
