@@ -1,5 +1,9 @@
 HackerNewsCloneWeb::Application.routes.draw do
-  resources :links
+  resources :links, :votes
+
+  resources :links do 
+    resources :votes
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

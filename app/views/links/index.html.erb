@@ -10,13 +10,20 @@
 
 <table class="table">
   <tr>
-    <td>Url</td>
+    <td>URL</td>
+    <td>Description</td>
+    <td>Vote Up</td>
+    <td>Vote Down</td>
+    <td>Total</td>
   </tr>
   <% @links.each do |link| %>
     <tr>
-      <td><%= link_to link.url, "http://" + "#{link.url}"  %></td>
-
-    </tr>
+      <td><%= link_to link.url, "#{link.url}"  %></td>
+      <td><%= link.description  %></td>
+      <td><%= link_to 'Vote Up', link_votes_path(link, :vote => {:up_down => 1}), :method => :post, :class => 'btn btn-primary' %></td>
+      <td><%= link_to 'Vote Down', link_votes_path(link, :vote => {:up_down => -1}), :method => :post, :class => 'btn btn-primary' %></td>
+      <td><%= link.count_votes  %></td>
+   </tr>
   <% end %>
 </table>
 
