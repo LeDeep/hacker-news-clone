@@ -1,4 +1,11 @@
 HackerNewsCloneWeb::Application.routes.draw do
+  
+  
+
+  resources :sessions
+  resources :users
+
+
   resources :links, :votes
 
   resources :links do 

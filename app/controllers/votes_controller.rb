@@ -5,7 +5,7 @@ class VotesController < ApplicationController
   end
 
   def create
-    @vote = Link.find(params[:link_id]).votes.create!(params[:vote])
+    @vote = Link.find(params[:link_id]).votes.create(params[:vote])
 
     if @vote.save
       flash[:notice] = 'Thanks for voting.'

@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <div class="container">
+    <% if current_user %>
+      Logged in as <%= current_user.email %>.
+      <%= link_to "Log Out", session_path("current"), method: "delete" %>
+    <% else %>
+      <%= link_to "Sign Up", new_user_path, :class => 'btn btn-primary btn-small' %>
+      <%= link_to "Log In", new_session_path, :class => 'btn btn-success btn-small' %>
+    <% end %>
+  </div>
   <title>Hacker News Clone | <%= yield :title %></title>
 
   <%= stylesheet_link_tag    "application", :media => "all" %>
@@ -8,6 +17,7 @@
   <%= csrf_meta_tags %>
 </head>
  <body>
+
   <div class="container">
     <% if flash[:notice] %>
       <div class="alert alert-info"><%= flash[:notice] %></div>
