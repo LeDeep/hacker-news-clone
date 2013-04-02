@@ -13,13 +13,10 @@ FactoryGirl.define do
   factory :link do
     url 'http://www.google.com'
     description 'Search'
-    factory :link_with_votes do 
-      ignore do 
-        votes_count 2
-      end
 
+    factory :link_with_votes do 
       after(:create) do |link, evaluator|
-        FactoryGirl.create_list(:vote, evaluator.votes_count, link: link)
+        10.times {FactoryGirl.create(:vote, link: link)}
       end
     end
   end

@@ -13,8 +13,8 @@ describe Link do
 
   context '#count_votes' do 
     it 'counts the votes for a given link' do
-      link = FactoryGirl.create(:link_with_votes, votes_count: 2)
-      link.count_votes.should eq 2
+      link = FactoryGirl.create(:link_with_votes)
+      link.count_votes.should eq link.votes.count
     end
   end
 end
